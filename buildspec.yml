@@ -5,7 +5,7 @@ phases:
     commands:
     - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
     - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
-    - URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_NAME}
+    - URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/go/server
     # - REPO=$(aws ecr describe-repositories --repository-names go/server --output text --query "repositories[0].repositoryUri")
     # - IMAGE=$REPO:latest
   build:
