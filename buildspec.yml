@@ -4,14 +4,16 @@ phases:
   pre_build:
     commands:
     - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-    - REPO=$(aws ecr describe-repositories --repository-names go/server --output text --query "repositories[0].repositoryUri")
-    - IMAGE=$REPO:latest
+    - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+    - URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_NAME}
+    # - REPO=$(aws ecr describe-repositories --repository-names go/server --output text --query "repositories[0].repositoryUri")
+    # - IMAGE=$REPO:latest
   build:
     commands:
-    - docker build -t $IMAGE .
-    - docker push $IMAGE
+    - docker build -t $URI:$CODEBUILD_RESOLVED_SOURCE_VERSION .
+    - docker push $URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build:
     commands:
-    - printf '[{"name":"go-server","imageUri":"%s"}]' $IMAGE > imagedefinitions.json
+    - printf '{"Version":"1.0","ImageURI":"%s"}' $URI:$CODEBUILD_RESOLVED_SOURCE_VERSION > imageDetail.json
 artifacts:
-  files: imagedefinitions.json
+  files: imageDetail.json
