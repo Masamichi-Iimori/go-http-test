@@ -1,9 +1,15 @@
 version: 0.2
 
+env:
+  secrets-manager:
+    DOCKERHUB_USER: arn:aws:secretsmanager:ap-northeast-1:567204659259:secret:dockerhub-9vQk0E:username
+    DOCKERHUB_PASS: arn:aws:secretsmanager:ap-northeast-1:567204659259:secret:dockerhub-9vQk0E:password
 phases:
   pre_build:
     commands:
     - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+    - echo Logging in to Docker Hub...
+    - echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
     - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
     - URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/go/server
     # - REPO=$(aws ecr describe-repositories --repository-names go/server --output text --query "repositories[0].repositoryUri")
