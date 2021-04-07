@@ -14,5 +14,5 @@ func main() {
 	todoHandler := injector.InjectTodoHandler()
 	e := echo.New()
 	handler.InitRouting(e, todoHandler)
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(":9000"))
 }
