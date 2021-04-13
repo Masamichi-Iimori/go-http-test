@@ -14,7 +14,7 @@ version: "3"
 
 services:
   db:
-    build: ./mysql
+    build: ./docker/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: localuser
@@ -26,7 +26,7 @@ services:
       - "3310:3306"
 
   web:
-    build: .
+    build: ./docker/golang
     tty: true
     environment:
       APP_MODE: local
@@ -43,7 +43,7 @@ services:
       - db
 
   proxy:
-    build: ./nginx
+    build: ./docker/nginx
     ports:
       - 8082:80
     depends_on:
