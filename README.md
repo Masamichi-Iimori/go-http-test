@@ -4,5 +4,4 @@ terraform で ECS にデプロイするテスト
 
 ## next to do
 
-- migration を整理
-- todo テーブル作ってみる
+- CRUD 実装
