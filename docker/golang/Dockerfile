@@ -9,10 +9,9 @@ ENV DOCKER_ROOT /tmp/mnt/docker
 ## 作業ディレクトリ
 WORKDIR $APP_ROOT
 
-# モジュール管理のファイルをコピー
-COPY ./src/go.mod $APP_ROOT
-COPY ./src/go.sum $APP_ROOT
+COPY ./src $APP_ROOT
 
+RUN ls $APP_ROOT
 # 外部パッケージのダウンロード
 RUN go mod download all
 

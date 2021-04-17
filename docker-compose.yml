@@ -1,32 +1,24 @@
-# version: '3'
-# services:
-#   go:
-#     build:
-#       context: .
-#       dockerfile: DockerFile
-#     command: /bin/sh -c "go run main.go"
-#     stdin_open: true
-#     tty: true
-#     volumes:
-#       - .:/app
-
-version: "3"
+version: '3'
 
 services:
   db:
-    build: ./docker/mysql
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: localuser
       MYSQL_PASSWORD: localpass
       TZ: Asia/Tokyo
     volumes:
-      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
-      - "3310:3306"
+      - '3310:3306'
 
   web:
-    build: ./docker/golang
+    build:
+      context: .
+      dockerfile: docker/golang/Dockerfile
     tty: true
     environment:
       APP_MODE: local
@@ -38,12 +30,14 @@ services:
       DB_NAME_TEST: go_sample_test
       DB_LOC: Asia%2FTokyo
     volumes:
-      - "./src:/tmp/mnt/src"
+      - './src:/tmp/mnt/src'
     depends_on:
       - db
 
   proxy:
-    build: ./docker/nginx
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
     ports:
       - 8082:80
     depends_on:
