@@ -1,8 +1,6 @@
 package repository
 
-import (
-	"github.com/go-http-test/model"
-)
+import "github.com/masamichhhhi/go-clean/domain/model"
 
 //TodoRepository is interface for infrastructure
 type TodoRepository interface {

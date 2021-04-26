@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"github.com/go-http-test/model"
-	"github.com/go-http-test/repository"
+	"github.com/masamichhhhi/go-clean/domain/model"
+	"github.com/masamichhhhi/go-clean/domain/repository"
 )
 
 type TodoUsecase interface {

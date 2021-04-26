@@ -1,10 +1,10 @@
 package injector
 
 import (
-	"github.com/go-http-test/handler"
-	"github.com/go-http-test/infrastructure"
-	"github.com/go-http-test/repository"
-	"github.com/go-http-test/usecase"
+	"github.com/masamichhhhi/go-clean/domain/repository"
+	"github.com/masamichhhhi/go-clean/handler"
+	"github.com/masamichhhhi/go-clean/infrastructure"
+	"github.com/masamichhhhi/go-clean/usecase"
 )
 
 func InjectDB() infrastructure.SqlHandler {

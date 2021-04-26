@@ -3,10 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/go-http-test/handler"
-	"github.com/go-http-test/injector"
-
 	"github.com/labstack/echo"
+	"github.com/masamichhhhi/go-clean/handler"
+	"github.com/masamichhhhi/go-clean/injector"
 )
 
 func main() {

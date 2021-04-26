@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/go-http-test/model"
-	"github.com/go-http-test/usecase"
 	"github.com/labstack/echo"
+	"github.com/masamichhhhi/go-clean/domain/model"
+	"github.com/masamichhhhi/go-clean/usecase"
 )
 
 type TodoHandler struct {
