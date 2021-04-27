@@ -18,7 +18,6 @@ func NewTodoHandler(todoUsecase usecase.TodoUsecase) TodoHandler {
 }
 
 func (handler *TodoHandler) View() echo.HandlerFunc {
-
 	return func(c echo.Context) error {
 		models, err := handler.todoUsecase.View()
 		if err != nil {

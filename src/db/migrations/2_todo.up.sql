@@ -1,4 +1,4 @@
-CREATE TABLE `todo` (
+CREATE TABLE `todos` (
   `id` bigint(2) NOT NULL AUTO_INCREMENT,
   `task` varchar(20) NOT NULL,
   `limit_date` datetime NOT NULL,
