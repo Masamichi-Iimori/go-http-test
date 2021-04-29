@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db:
@@ -13,12 +13,14 @@ services:
     volumes:
       - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
-      - '3310:3306'
+      - "3310:3306"
 
   web:
     build:
       context: .
       dockerfile: docker/golang/Dockerfile
+    ports:
+      - 3000:9000
     tty: true
     environment:
       APP_MODE: local
@@ -30,7 +32,7 @@ services:
       DB_NAME_TEST: go_sample_test
       DB_LOC: Asia%2FTokyo
     volumes:
-      - './src:/tmp/mnt/src'
+      - "./src:/tmp/mnt/src"
     depends_on:
       - db
 
