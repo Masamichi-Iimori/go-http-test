@@ -7,8 +7,8 @@ import (
 	"github.com/masamichhhhi/go-clean/usecase"
 )
 
-func InjectDB() infrastructure.SqlHandler {
-	sqlhandler := infrastructure.NewSQLHandler()
+func InjectDB() infrastructure.GormHandler {
+	sqlhandler := infrastructure.NewGormHandler()
 	return *sqlhandler
 }
 

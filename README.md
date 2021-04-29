@@ -4,4 +4,5 @@ terraform で ECS にデプロイするテスト
 
 ## next to do
 
-- CRUD 実装
+- db の永続化
+- infrastructure 用の struct 定義
